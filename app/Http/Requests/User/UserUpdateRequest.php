@@ -28,6 +28,7 @@ class UserUpdateRequest extends FormRequest
             // Todo delete after
             'profile_image',
             'email' => 'required|email',
+            'plan_id' => 'exist:plans,id'
         ];
     }
 }
