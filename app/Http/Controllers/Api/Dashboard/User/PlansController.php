@@ -18,7 +18,7 @@ class PlansController extends Controller
 
     public function index(): AnonymousResourceCollection
     {
-        $plans = $this->planService->fetchPlans();
+        $plans = $this->planService->fetch();
         return PlansResource::collection($plans);
     }
 }

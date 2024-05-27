@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class PlansService
 {
-    public function fetchPlans(): Collection
+    public function fetch(): Collection
     {
         return Plan::all();
     }
