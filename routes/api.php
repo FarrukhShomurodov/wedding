@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\OTPController;
 use App\Http\Controllers\Api\Dashboard\CommentController;
 use App\Http\Controllers\Api\Dashboard\EventController;
+use App\Http\Controllers\Api\Dashboard\GalleryController;
 use App\Http\Controllers\Api\Dashboard\GuestsController;
 use App\Http\Controllers\Api\Dashboard\HistoryController;
 use App\Http\Controllers\Api\Dashboard\User\PlansController;
@@ -60,6 +61,14 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('/', [EventController::class, 'store']);
             Route::put('/{event}', [EventController::class, 'update']);
             Route::delete('/{event}', [EventController::class, 'destroy']);
+        });
+
+        Route::prefix('gallery')->group(function () {
+            Route::get('/{wedding}', [GalleryController::class, 'fetchByWedding']);
+            Route::get('/show/{gallery}', [GalleryController::class, 'show']);
+            Route::post('/', [GalleryController::class, 'store']);
+            Route::put('/{gallery}', [GalleryController::class, 'update']);
+            Route::delete('/{gallery}', [GalleryController::class, 'destroy']);
         });
     });
 });

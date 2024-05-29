@@ -30,10 +30,10 @@ class EventController extends Controller
         return EventResource::collection($histories);
     }
 
-    public function show(Event $Event): EventResource
+    public function show(Event $event): EventResource
     {
-        $Event = $this->eventRepository->show($Event);
-        return EventResource::make($Event);
+        $event = $this->eventRepository->show($event);
+        return EventResource::make($event);
     }
 
     public function store(StoreRequest $request): EventResource
@@ -44,16 +44,16 @@ class EventController extends Controller
     }
 
 
-    public function update(Event $Event, UpdateRequest $request): EventResource
+    public function update(Event $event, UpdateRequest $request): EventResource
     {
-        $Event = $this->eventService->update($Event, $request->validated());
+        $event = $this->eventService->update($event, $request->validated());
 
-        return EventResource::make($Event);
+        return EventResource::make($event);
     }
 
-    public function destroy(Event $Event): JsonResponse
+    public function destroy(Event $event): JsonResponse
     {
-        $this->eventService->destroy($Event);
+        $this->eventService->destroy($event);
 
         return response()->json([], 204);
     }
