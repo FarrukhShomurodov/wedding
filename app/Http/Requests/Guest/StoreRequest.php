@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Guest;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserUpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,7 @@ class UserUpdateRequest extends FormRequest
             'name' => 'required|string|max:50',
             'last_name' => 'required|string|max:70',
             'phone_number' => 'required|regex:/^\+?[0-9]{10,}$/',
-            // Todo delete after
-            'profile_image',
-            'email' => 'required|email',
-            'plan_id' => 'exist:plans,id'
+            'wedding_id' => 'required|exists:weddings,id'
         ];
     }
 }

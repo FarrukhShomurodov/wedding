@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use Alexvexone\LaravelOperSms\OperSmsService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\UserLoginRequest;
+use App\Http\Requests\User\LoginRequest;
 use App\Models\User;
 use App\Models\VerifyCode;
 use Illuminate\Http\JsonResponse;
@@ -14,11 +14,11 @@ class OTPController extends Controller
 {
     /**
      * Sending code to user phone number
-     * @param UserLoginRequest $request
+     * @param LoginRequest $request
      * @return JsonResponse
      * @throws \Exception
      */
-    public function sendOTP(UserLoginRequest $request): JsonResponse
+    public function sendOTP(LoginRequest $request): JsonResponse
     {
         //validate
         $validated = $request->validated();
@@ -62,10 +62,10 @@ class OTPController extends Controller
 
     /**
      * Checking written code
-     * @param UserLoginRequest $request
+     * @param LoginRequest $request
      * @return JsonResponse
      */
-    public function checkCode(UserLoginRequest $request): JsonResponse
+    public function checkCode(LoginRequest $request): JsonResponse
     {
         $validated = $request->validated();
 

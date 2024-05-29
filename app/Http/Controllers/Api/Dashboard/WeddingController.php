@@ -38,8 +38,8 @@ class WeddingController extends Controller
 
     public function update(Wedding $wedding, WeddingRequest $request): WeddingResource
     {
-        $weddingUpdated = $this->weddingServive->update($wedding, $request->validated());
+        $wedding = $this->weddingServive->update($wedding, $request->validated());
 
-        return WeddingResource::make($weddingUpdated);
+        return WeddingResource::make($wedding);
     }
 }
