@@ -14,7 +14,7 @@ class HistoryRepository
         return $wedding->history()->get();
     }
 
-    function show(History $history)
+    function show(History $history): History
     {
         return $history;
     }
