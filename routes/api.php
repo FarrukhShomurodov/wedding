@@ -13,7 +13,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/send-otp', [OTPController::class, 'sendOTP']);
-Route::post('/check-otp', [OTPController::class, 'checkCode']);
+Route::post('/verify-otp', [OTPController::class, 'checkCode']);
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
@@ -21,17 +21,19 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
-});
+    Route::get('/plan', [PlansController::class, 'index']);
 
-Route::get('/plan', [PlansController::class, 'index']);
+    Route::prefix('guest')->group(function () {
+        Route::get('/', [GuestsController::class, 'index']);
+        Route::post('/', [GuestsController::class, 'store']);
+        Route::put('/{guest}', [GuestsController::class, 'update']);
+        Route::delete('/{guest}', [GuestsController::class, 'destroy']);
+    });
 
-Route::prefix('guest')->group(function () {
-    Route::get('/', [GuestsController::class, 'index']);
-    Route::post('/', [GuestsController::class, 'store']);
-});
-
-Route::prefix('wedding')->group(function () {
-    Route::get('/', [WeddingController::class, 'index']);
-    Route::get('/{wedding}', [WeddingController::class, 'show']);
-    Route::post('/', [WeddingController::class, 'store']);
+    Route::prefix('wedding')->group(function () {
+        Route::get('/', [WeddingController::class, 'index']);
+        Route::get('/{wedding}', [WeddingController::class, 'show']);
+        Route::post('/', [WeddingController::class, 'store']);
+        Route::put('/{wedding}', [WeddingController::class, 'update']);
+    });
 });

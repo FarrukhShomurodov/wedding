@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\GuestsRequest;
+use App\Http\Requests\Guest\GuestsRequest;
+use App\Http\Requests\Guest\UpdateGuestRequest;
 use App\Http\Resources\GuestsResource;
+use App\Models\Guest;
 use App\Services\GuestsService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class GuestsController extends Controller
 {
-    protected $guestService;
+    protected GuestsService $guestService;
 
     public function __construct(GuestsService $guestService)
     {
@@ -25,9 +28,22 @@ class GuestsController extends Controller
 
     public function store(GuestsRequest $request): GuestsResource
     {
-        $validated = $request->validated();
-        $guest = $this->guestService->store($validated);
+        $guest = $this->guestService->store($request->validated());
 
         return GuestsResource::make($guest);
+    }
+
+    public function update(Guest $guest, UpdateGuestRequest $request): GuestsResource
+    {
+        $guest = $this->guestService->update($guest, $request->validated());
+
+        return GuestsResource::make($guest);
+    }
+
+    public function destroy(Guest $guest): JsonResponse
+    {
+        $this->guestService->destroy($guest);
+
+        return response()->json([], 204);
     }
 }

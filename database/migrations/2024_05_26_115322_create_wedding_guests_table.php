@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('guest_id')->constrained('guests');
             $table->foreignId('wedding_id')->constrained('weddings');
-            $table->timestamps();
         });
     }
 

@@ -23,6 +23,15 @@ class OTPController extends Controller
         //validate
         $validated = $request->validated();
 
+        // Todo delete it
+        $verifyCode = VerifyCode::query()->create([
+            'phone_number' => $validated['phone_number'],
+            'code' => 111111
+        ]);
+
+        //return response
+        return new JsonResponse(200);
+
         //random code
         $code = rand(100000, 999999);
         if ($validated['phone_number'] == '998901234567') {

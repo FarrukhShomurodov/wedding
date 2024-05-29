@@ -9,7 +9,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PlansController extends Controller
 {
-    protected $planService;
+    protected PlansService $planService;
 
     public function __construct(PlansService $planService)
     {

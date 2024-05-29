@@ -19,10 +19,10 @@ class WeddingService
         return Wedding::query()->create($validated);
     }
 
-    public function update($wedding, $validated)
+    public function update(Wedding $wedding, $validated): Wedding
     {
         $wedding->update($validated);
 
-        return $wedding;
+        return $wedding->refresh();
     }
 }

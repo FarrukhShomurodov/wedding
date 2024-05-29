@@ -18,7 +18,7 @@ class WeddingRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
-            'user_id' => Auth::user()
+            'user_id' => Auth::user()->id
         ]);
     }
 

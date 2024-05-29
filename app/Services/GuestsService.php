@@ -21,4 +21,17 @@ class GuestsService
 
         return $guest;
     }
+
+    public function update(Guest $guest, $validated): Guest
+    {
+        $guest->update($validated);
+
+        return $guest->refresh();
+    }
+
+    public function destroy(Guest $guest): void
+    {
+        $guest->wedding()->detach($guest['wedding_id']);
+        $guest->delete();
+    }
 }

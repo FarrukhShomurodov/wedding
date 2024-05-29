@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class WeddingController extends Controller
 {
-    protected $weddingServive;
+    protected WeddingService $weddingServive;
 
     public function __construct(WeddingService $weddingService)
     {
