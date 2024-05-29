@@ -41,5 +41,10 @@ class Wedding extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function event(): HasMany
+    {
+        return $this->hasMany(Event::class);
+    }
 }
 

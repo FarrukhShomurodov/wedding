@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\OTPController;
 use App\Http\Controllers\Api\Dashboard\CommentController;
+use App\Http\Controllers\Api\Dashboard\EventController;
 use App\Http\Controllers\Api\Dashboard\GuestsController;
 use App\Http\Controllers\Api\Dashboard\HistoryController;
 use App\Http\Controllers\Api\Dashboard\User\PlansController;
@@ -45,11 +46,20 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('/{history}', [HistoryController::class, 'update']);
             Route::delete('/{history}', [HistoryController::class, 'destroy']);
         });
+
         Route::prefix('comment')->group(function () {
             Route::get('/{wedding}', [CommentController::class, 'fetchByWedding']);
             Route::post('/', [CommentController::class, 'store']);
             Route::put('/{comment}', [CommentController::class, 'update']);
             Route::delete('/{comment}', [CommentController::class, 'destroy']);
+        });
+
+        Route::prefix('event')->group(function () {
+            Route::get('/{wedding}', [EventController::class, 'fetchByWedding']);
+            Route::get('/show/{event}', [EventController::class, 'show']);
+            Route::post('/', [EventController::class, 'store']);
+            Route::put('/{event}', [EventController::class, 'update']);
+            Route::delete('/{event}', [EventController::class, 'destroy']);
         });
     });
 });
