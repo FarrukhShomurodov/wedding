@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\UserLoginRequest;
-use App\Http\Requests\User\UserRegisterRequest;
+use App\Http\Requests\User\LoginRequest;
+use App\Http\Requests\User\RegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Models\VerifyCode;
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
-    public function login(UserLoginRequest $request): JsonResponse
+    public function login(LoginRequest $request): JsonResponse
     {
         $validated = $request->validated();
 
@@ -44,7 +44,7 @@ class AuthController extends Controller
     }
 
 
-    public function register(UserRegisterRequest $request): JsonResponse
+    public function register(RegisterRequest $request): JsonResponse
     {
         $validated = $request->validated();
 

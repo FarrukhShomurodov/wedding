@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\OTPController;
 use App\Http\Controllers\Api\Dashboard\GuestsController;
+use App\Http\Controllers\Api\Dashboard\HistoryController;
 use App\Http\Controllers\Api\Dashboard\User\PlansController;
 use App\Http\Controllers\Api\Dashboard\WeddingController;
 use Illuminate\Http\Request;
@@ -35,5 +36,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{wedding}', [WeddingController::class, 'show']);
         Route::post('/', [WeddingController::class, 'store']);
         Route::put('/{wedding}', [WeddingController::class, 'update']);
+
+        Route::prefix('history')->group(function () {
+            Route::get('/{wedding}', [HistoryController::class, 'fetchByWedding']);
+            Route::get('/show/{history}', [HistoryController::class, 'show']);
+            Route::post('/', [HistoryController::class, 'store']);
+            Route::put('/{history}', [HistoryController::class, 'update']);
+            Route::delete('/{history}', [HistoryController::class, 'destroy']);
+        });
     });
 });

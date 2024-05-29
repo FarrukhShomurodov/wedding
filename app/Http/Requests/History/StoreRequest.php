@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Guest;
+namespace App\Http\Requests\History;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateGuestRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,12 @@ class UpdateGuestRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:50',
-            'last_name' => 'required|string|max:70',
-            'phone_number' => 'required|regex:/^\+?[0-9]{10,}$/',
+            'title' => 'required|string|max:200',
+            'description' => 'required|string',
+            'date' => 'required|date',
+            'wedding_id' => 'required|exists:weddings,id',
+            //Todo image
+            'content_link' => 'required|string'
         ];
     }
 }
