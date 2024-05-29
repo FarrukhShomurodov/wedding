@@ -10,14 +10,14 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('weddings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('last_name');
-            $table->string('phone_number')->unique();
-            $table->string('profile_image')->nullable();
-            $table->string('email')->nullable()->unique();
-            $table->foreignId('plan_id')->nullable()->constrained('plans');
+            $table->foreignId('user_id');
+            $table->string('groom_name');
+            $table->string('bridge_name');
+            $table->date('date');
+            $table->string('location');
+            $table->text('information_later');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('weddings');
     }
 };

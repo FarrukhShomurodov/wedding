@@ -21,6 +21,7 @@ class AuthController extends Controller
         $phoneVerified = VerifyCode::query()->where('phone_number', $validated['phone_number'])->latest()->where('status', true)->first();
 
         if ($phoneVerified) {
+            $phoneVerified->delete();
             $user = User::query()->where('phone_number', $validated['phone_number'])->first();
 
             if ($user)

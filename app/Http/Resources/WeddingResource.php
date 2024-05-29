@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class WeddingResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,12 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'last_name' => $this->last_name,
-            'phone_number' => $this->phone_number,
-            'profile_image' => $this->profile_image,
-            'email' => $this->email,
+            'user' => UserResource::make($this->user),
+            'groom_name' => $this->groom_name,
+            'bridge_name' => $this->bridge_name,
+            'date' => $this->date,
+            'location' => $this->location,
+            'information_later'=> $this->information_later
         ];
     }
 }
