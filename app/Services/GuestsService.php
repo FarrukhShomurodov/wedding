@@ -9,11 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class GuestsService
 {
-    public function fetch(): Collection
-    {
-        return Guest::all();
-    }
-
     public function store($validated): Model|Builder
     {
         $guest = Guest::query()->create($validated);

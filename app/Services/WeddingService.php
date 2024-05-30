@@ -9,11 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class WeddingService
 {
-    public function fetch(): Collection
-    {
-        return Wedding::all();
-    }
-
     public function store($validated): Model|Builder
     {
         return Wedding::query()->create($validated);

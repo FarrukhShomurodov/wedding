@@ -4,21 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Comment extends Model
+class CommentReply extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'full_name',
         'text',
-        'date',
-        'wedding_id'
+        'comment_id'
     ];
 
-    public function commentReplay(): HasMany
+    public function comment(): BelongsTo
     {
-        return $this->hasMany(CommentReply::class);
+        return $this->belongsTo(Comment::class);
     }
 }

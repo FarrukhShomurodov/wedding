@@ -6,27 +6,35 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\WeddingRequest;
 use App\Http\Resources\WeddingResource;
 use App\Models\Wedding;
+use App\Repositories\WeddingRepository;
 use App\Services\WeddingService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class WeddingController extends Controller
 {
     protected WeddingService $weddingServive;
+    protected WeddingRepository $weddingRepository;
 
-    public function __construct(WeddingService $weddingService)
+    public function __construct(WeddingService $weddingService, WeddingRepository $weddingRepository)
     {
         $this->weddingServive = $weddingService;
+        $this->weddingRepository = $weddingRepository;
     }
 
     public function index(): AnonymousResourceCollection
     {
-        $wedding = $this->weddingServive->fetch();
+        $wedding = $this->weddingRepository->getAll();
         return WeddingResource::collection($wedding);
     }
 
     public function show(Wedding $wedding): WeddingResource
     {
-        return WeddingResource::make($wedding);
+        $wedding = $this->weddingRepository->show($wedding);
+
+        if ($wedding)
+            return WeddingResource::make($wedding);
+        else
+            abort(204, 'Wedding not found');
     }
 
     public function store(WeddingRequest $request): WeddingResource

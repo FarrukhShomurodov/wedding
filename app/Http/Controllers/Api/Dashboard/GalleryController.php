@@ -33,7 +33,10 @@ class GalleryController extends Controller
     public function show(Gallery $gallery): GalleryResource
     {
         $gallery = $this->galleryRepository->show($gallery);
-        return GalleryResource::make($gallery);
+        if ($gallery)
+            return GalleryResource::make($gallery);
+        else
+            abort(204, 'Gallery not found');
     }
 
     public function store(StoreRequest $request): GalleryResource

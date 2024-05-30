@@ -33,7 +33,11 @@ class EventController extends Controller
     public function show(Event $event): EventResource
     {
         $event = $this->eventRepository->show($event);
-        return EventResource::make($event);
+
+        if($event)
+            return EventResource::make($event);
+        else
+            abort(204, 'Event not found');
     }
 
     public function store(StoreRequest $request): EventResource

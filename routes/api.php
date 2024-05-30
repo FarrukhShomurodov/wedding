@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\OTPController;
-use App\Http\Controllers\Api\Dashboard\CommentController;
+use App\Http\Controllers\Api\Dashboard\Comment\CommentController;
+use App\Http\Controllers\Api\Dashboard\Comment\CommentReplyController;
 use App\Http\Controllers\Api\Dashboard\EventController;
 use App\Http\Controllers\Api\Dashboard\GalleryController;
 use App\Http\Controllers\Api\Dashboard\GuestsController;
 use App\Http\Controllers\Api\Dashboard\HistoryController;
-use App\Http\Controllers\Api\Dashboard\User\PlansController;
+use App\Http\Controllers\Api\Dashboard\PlansController;
 use App\Http\Controllers\Api\Dashboard\WeddingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,13 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('/', [CommentController::class, 'store']);
             Route::put('/{comment}', [CommentController::class, 'update']);
             Route::delete('/{comment}', [CommentController::class, 'destroy']);
+
+            Route::prefix('replay')->group(function () {
+                Route::get('/{commentReply}', [CommentReplyController::class, 'fetchByComment']);
+                Route::post('/', [CommentReplyController::class, 'store']);
+                Route::put('/{commentReply}', [CommentReplyController::class, 'update']);
+                Route::delete('/{commentReply}', [CommentReplyController::class, 'destroy']);
+            });
         });
 
         Route::prefix('event')->group(function () {

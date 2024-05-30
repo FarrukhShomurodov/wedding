@@ -23,7 +23,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'full_name' => 'required|string|max:200',
-            'message' => 'required|string',
+            'text' => 'required|string',
             'date' => 'required|date',
         ];
     }

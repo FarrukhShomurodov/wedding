@@ -33,7 +33,11 @@ class HistoryController extends Controller
     public function show(History $history): HistoryResource
     {
         $history = $this->historyRepository->show($history);
-        return HistoryResource::make($history);
+
+        if ($history)
+            return HistoryResource::make($history);
+        else
+            abort(204, 'History not found');
     }
 
     public function store(StoreRequest $request): HistoryResource

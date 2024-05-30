@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Api\Dashboard\User;
+namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PlanRepository;
 use App\Http\Resources\PlansResource;
-use App\Services\PlansService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PlansController extends Controller
 {
-    protected PlansService $planService;
+    protected PlanRepository $planRepository;
 
-    public function __construct(PlansService $planService)
+    public function __construct(PlanRepository $planRepository)
     {
-        $this->planService = $planService;
+        $this->planRepository = $planRepository;
     }
 
     public function index(): AnonymousResourceCollection
     {
-        $plans = $this->planService->fetch();
+        $plans = $this->planRepository->getAll();
         return PlansResource::collection($plans);
     }
 }

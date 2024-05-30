@@ -4,7 +4,7 @@ namespace App\Http\Requests\Comment;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest extends FormRequest
+class CommentReplyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class StoreRequest extends FormRequest
         return [
             'full_name' => 'required|string|max:200',
             'text' => 'required|string',
-            'date' => 'required|date',
-            'wedding_id' => 'required|exists:weddings,id'
+            'comment_id' => 'required|exists:comments,id'
         ];
     }
 }

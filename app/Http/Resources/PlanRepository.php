@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Services;
+namespace App\Http\Resources;
 
 use App\Models\Plan;
 use Illuminate\Database\Eloquent\Collection;
 
-class PlansService
+class PlanRepository
 {
-    public function fetch(): Collection
+    public function getAll(): Collection
     {
         return Plan::all();
     }

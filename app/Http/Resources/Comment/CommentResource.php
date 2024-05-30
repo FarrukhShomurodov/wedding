@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Comment;
 
+use App\Http\Resources\WeddingResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -17,7 +18,7 @@ class CommentResource extends JsonResource
         return [
             'id' => $this->id,
             'full_name' => $this->full_name,
-            'message' => $this->message,
+            'text' => $this->message,
             'date' => $this->date,
             'wedding' => WeddingResource::make($this->wedding),
         ];

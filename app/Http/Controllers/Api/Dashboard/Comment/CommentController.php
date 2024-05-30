@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api\Dashboard;
+namespace App\Http\Controllers\Api\Dashboard\Comment;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Comment\StoreRequest;
 use App\Http\Requests\Comment\UpdateRequest;
-use App\Http\Resources\CommentResource;
+use App\Http\Resources\Comment\CommentResource;
 use App\Models\Comment;
 use App\Models\Wedding;
 use App\Repositories\CommentRepository;

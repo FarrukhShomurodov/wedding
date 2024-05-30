@@ -7,6 +7,7 @@ use App\Http\Requests\Guest\StoreRequest;
 use App\Http\Requests\Guest\UpdateRequest;
 use App\Http\Resources\GuestsResource;
 use App\Models\Guest;
+use App\Repositories\GuestRepository;
 use App\Services\GuestsService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -14,15 +15,17 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 class GuestsController extends Controller
 {
     protected GuestsService $guestService;
+    protected GuestRepository $guestRepository;
 
-    public function __construct(GuestsService $guestService)
+    public function __construct(GuestRepository $guestRepository, GuestsService $guestService)
     {
+        $this->guestRepository = $guestRepository;
         $this->guestService = $guestService;
     }
 
     public function index(): AnonymousResourceCollection
     {
-        $guests = $this->guestService->fetch();
+        $guests = $this->guestRepository->getAll();
         return GuestsResource::collection($guests);
     }
 
