@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Comment;
+use App\Models\Comment\Comment;
 use Illuminate\Database\Eloquent\Collection;
 
 class CommentReplyRepository

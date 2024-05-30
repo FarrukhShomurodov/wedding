@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Comment;
 
-use App\Models\CommentReply;
+use App\Models\Comment\CommentReply;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 

@@ -6,10 +6,10 @@ namespace App\Http\Controllers\Api\Dashboard\Comment;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Comment\CommentReplyRequest;
 use App\Http\Resources\Comment\CommentReplyResource;
-use App\Models\Comment;
-use App\Models\CommentReply;
+use App\Models\Comment\Comment;
+use App\Models\Comment\CommentReply;
 use App\Repositories\CommentReplyRepository;
-use App\Services\CommentReplyService;
+use App\Services\Comment\CommentReplyService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 

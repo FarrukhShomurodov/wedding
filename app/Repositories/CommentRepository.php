@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Models\Comment;
 use App\Models\Wedding;
 use Illuminate\Database\Eloquent\Collection;
 

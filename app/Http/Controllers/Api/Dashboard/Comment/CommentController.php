@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Comment\StoreRequest;
 use App\Http\Requests\Comment\UpdateRequest;
 use App\Http\Resources\Comment\CommentResource;
-use App\Models\Comment;
+use App\Models\Comment\Comment;
 use App\Models\Wedding;
 use App\Repositories\CommentRepository;
-use App\Services\CommentService;
+use App\Services\Comment\CommentService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
