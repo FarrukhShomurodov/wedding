@@ -17,7 +17,6 @@ return new class extends Migration {
             $table->string('phone_number')->unique();
             $table->string('profile_image')->nullable();
             $table->string('email')->nullable()->unique();
-            $table->foreignId('plan_id')->nullable()->constrained('plans');
             $table->timestamps();
         });
     }

@@ -28,7 +28,6 @@ class UpdateRequest extends FormRequest
             //Todo image
             'profile_image',
             'email' => 'sometimes|email',
-            'plan_id' => 'sometimes|exist:plans,id'
         ];
     }
 }
