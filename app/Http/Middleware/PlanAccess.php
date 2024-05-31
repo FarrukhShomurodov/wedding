@@ -16,14 +16,6 @@ class PlanAccess
      */
     public function handle(Request $request, Closure $next, $permission): Response
     {
-//
-//        $user = Auth::user();
-//
-//        return response([
-//            'user_permissions' => $user->getPermissionNames()->toArray(),
-//            'has_permission' => $user->can($permission),
-//            'permission' => $permission
-//        ]);
 
         if (Auth::check() && Auth::user()->can($permission)) {
             return $next($request);

@@ -23,7 +23,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $userRole = Role::create(['name' => 'user']);
 
         // Assign permissions to roles
-        $userRole->givePermissionTo($basicPermission, $standardPermission, $premiumPermission);
+//        $userRole->givePermissionTo($basicPermission, $standardPermission, $premiumPermission);
         $adminRole->givePermissionTo(Permission::all());
     }
 }
