@@ -3,14 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -26,8 +27,8 @@ class User extends Authenticatable
         'email',
     ];
 
-    public function plan(): BelongsTo
+    public function plan(): BelongsToMany
     {
-        return $this->belongsTo(Plan::class);
+        return $this->belongsToMany(Subscription::class, 'subscriptions', 'user_id', 'plan_id');
     }
 }

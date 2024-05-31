@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\VerifyCode;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
@@ -48,11 +49,12 @@ class AuthController extends Controller
     {
         $validated = $request->validated();
 
-        $user = User::query()->create($validated);
-
         $phoneVerified = VerifyCode::query()->where('phone_number', $validated['phone_number'])->latest()->where('status', true)->first();
 
         if ($phoneVerified) {
+            $user = User::query()->create($validated);
+            $user->assignRole('user');
+
             if ($user)
                 $token = $user->createToken("access_token")->plainTextToken;
             else

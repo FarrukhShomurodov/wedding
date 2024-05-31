@@ -26,22 +26,22 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::get('/plan', [PlansController::class, 'index']);
+    Route::get('/plan', [PlansController::class, 'index'])->middleware('role:user|admin');
 
-    Route::prefix('guest')->group(function () {
+    Route::prefix('guest')->middleware('role:user|admin')->group(function () {
         Route::get('/', [GuestsController::class, 'index']);
         Route::post('/', [GuestsController::class, 'store']);
         Route::put('/{guest}', [GuestsController::class, 'update']);
         Route::delete('/{guest}', [GuestsController::class, 'destroy']);
     });
 
-    Route::prefix('wedding')->group(function () {
+    Route::prefix('wedding')->middleware('role:user|admin')->group(function () {
         Route::get('/', [WeddingController::class, 'index']);
         Route::get('/{wedding}', [WeddingController::class, 'show']);
         Route::post('/', [WeddingController::class, 'store']);
         Route::put('/{wedding}', [WeddingController::class, 'update']);
 
-        Route::prefix('history')->group(function () {
+        Route::prefix('history')->middleware(['plan.access:standard-plan-access', 'role:user|admin'])->group(function () {
             Route::get('/{wedding}', [HistoryController::class, 'fetchByWedding']);
             Route::get('/show/{history}', [HistoryController::class, 'show']);
             Route::post('/', [HistoryController::class, 'store']);
@@ -49,7 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::delete('/{history}', [HistoryController::class, 'destroy']);
         });
 
-        Route::prefix('comment')->group(function () {
+        Route::prefix('comment')->middleware(['plan.access:premium-plan-access', 'role:user|admin'])->group(function () {
             Route::get('/{wedding}', [CommentController::class, 'fetchByWedding']);
             Route::post('/', [CommentController::class, 'store']);
             Route::put('/{comment}', [CommentController::class, 'update']);
@@ -63,7 +63,7 @@ Route::middleware('auth:sanctum')->group(function () {
             });
         });
 
-        Route::prefix('event')->group(function () {
+        Route::prefix('event')->middleware(['plan.access:premium-plan-access', 'role:user|admin'])->group(function () {
             Route::get('/{wedding}', [EventController::class, 'fetchByWedding']);
             Route::get('/show/{event}', [EventController::class, 'show']);
             Route::post('/', [EventController::class, 'store']);
@@ -71,7 +71,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::delete('/{event}', [EventController::class, 'destroy']);
         });
 
-        Route::prefix('gallery')->group(function () {
+        Route::prefix('gallery')->middleware(['plan.access:premium-plan-access', 'role:user|admin'])->group(function () {
             Route::get('/{wedding}', [GalleryController::class, 'fetchByWedding']);
             Route::get('/show/{gallery}', [GalleryController::class, 'show']);
             Route::post('/', [GalleryController::class, 'store']);

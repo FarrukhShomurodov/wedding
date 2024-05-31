@@ -14,15 +14,15 @@ class PlansSeeder extends Seeder
     public function run(): void
     {
         DB::table('plans')->insert([
-            'title' => 'Basic',
-            'price' => 549.0,
-            'description' =>
-                'Invite card for 60 people,
+        'title' => 'Basic',
+        'price' => 549.0,
+        'description' =>
+            'Invite card for 60 people,
                  Can add more invite  cards,
                  Can add wedding date,
                  Can add info about couples
                 '
-        ]);
+    ]);
         DB::table('plans')->insert([
             'title' => 'Standard',
             'price' => 759.0,
