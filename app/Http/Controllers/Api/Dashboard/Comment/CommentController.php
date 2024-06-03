@@ -30,6 +30,11 @@ class CommentController extends Controller
         return CommentResource::collection($histories);
     }
 
+    public function countByWedding($weddingId): int
+    {
+        return $this->commentRepository->count($weddingId);
+    }
+
     public function store(StoreRequest $request): CommentResource
     {
         $history = $this->commentService->store($request->validated());

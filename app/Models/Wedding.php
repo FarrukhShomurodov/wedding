@@ -18,7 +18,7 @@ class Wedding extends Model
             'user_id',
             'groom_name',
             'bridge_name',
-            'date',
+            'date_time',
             'location',
             'information_later',
         ];
@@ -30,7 +30,7 @@ class Wedding extends Model
 
     public function guest(): BelongsToMany
     {
-        return $this->belongsToMany(Guest::class, 'guest_id', 'wedding_guests', 'wedding_id');
+        return $this->belongsToMany(Guest::class, 'wedding_guests', 'guest_id', 'wedding_id');
     }
 
     public function history(): HasMany

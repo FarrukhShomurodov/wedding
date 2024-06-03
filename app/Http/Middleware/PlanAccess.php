@@ -16,7 +16,7 @@ class PlanAccess
      */
     public function handle(Request $request, Closure $next, $permission): Response
     {
-
+z
         if (Auth::check() && Auth::user()->can($permission)) {
             return $next($request);
         }

@@ -19,7 +19,7 @@ class WeddingResource extends JsonResource
             'user' => UserResource::make($this->user),
             'groom_name' => $this->groom_name,
             'bridge_name' => $this->bridge_name,
-            'date' => $this->date,
+            'date_time' => $this->date,
             'location' => $this->location,
             'information_later'=> $this->information_later
         ];
