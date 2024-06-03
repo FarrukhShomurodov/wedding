@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api\Dashboard;
 
+use App\Events\RemainsWeddingDate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WeddingRequest;
 use App\Http\Resources\WeddingResource;
 use App\Models\Wedding;
 use App\Repositories\WeddingRepository;
 use App\Services\WeddingService;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class WeddingController extends Controller
@@ -35,6 +37,12 @@ class WeddingController extends Controller
             return WeddingResource::make($wedding);
         else
             abort(204, 'Wedding not found');
+    }
+
+    public function remainsWeddingDate(Wedding $wedding): array
+    {
+        event(new RemainsWeddingDate);
+        return $this->weddingRepository->remains($wedding);
     }
 
     public function store(WeddingRequest $request): WeddingResource

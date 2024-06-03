@@ -29,11 +29,19 @@ class GuestsController extends Controller
         return GuestsResource::collection($guests);
     }
 
-    public function store(StoreRequest $request): GuestsResource
+    public function countByWedding($weddingId): int
+    {
+        return $this->guestRepository->count($weddingId);
+    }
+
+    public function store(StoreRequest $request): JsonResponse
     {
         $guest = $this->guestService->store($request->validated());
 
-        return GuestsResource::make($guest);
+        return response()->json([
+            'guest' => GuestsResource::make($guest[0]),
+            'qr_code' => $guest[1]
+        ]);
     }
 
     public function update(Guest $guest, UpdateRequest $request): GuestsResource

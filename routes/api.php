@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\Auth\OTPController;
 use App\Http\Controllers\Api\Dashboard\Comment\CommentController;
 use App\Http\Controllers\Api\Dashboard\Comment\CommentReplyController;
+use App\Http\Controllers\Api\Dashboard\DashboardController;
 use App\Http\Controllers\Api\Dashboard\EventController;
 use App\Http\Controllers\Api\Dashboard\GalleryController;
 use App\Http\Controllers\Api\Dashboard\GuestsController;
@@ -78,5 +79,13 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::put('/{gallery}', [GalleryController::class, 'update']);
             Route::delete('/{gallery}', [GalleryController::class, 'destroy']);
         });
+    });
+
+    // Statistics
+    Route::prefix('statistics')->group(function () {
+        Route::get('/admin', [DashboardController::class, 'statisticsForAdmin']);
+        Route::get('/guest-count/{weddingId}', [GuestsController::class, 'countByWedding']);
+        Route::get('/comment-count/{weddingId}', [CommentController::class, 'countByWedding']);
+        Route::get('/remains-wedding-date/{wedding}', [WeddingController::class, 'remainsWeddingDate']);
     });
 });

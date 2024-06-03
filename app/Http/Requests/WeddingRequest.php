@@ -33,7 +33,7 @@ class WeddingRequest extends FormRequest
             'user_id' => 'required|exists:users,id',
             'groom_name' => 'required|string|max:200',
             'bridge_name' => 'required|string|max:200',
-            'date' => 'required|date',
+            'date_time' => 'required|date',
             'location' => 'required|string',
             'information_later' => 'required|string'
         ];
