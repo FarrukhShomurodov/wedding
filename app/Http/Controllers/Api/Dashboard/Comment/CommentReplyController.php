@@ -8,7 +8,7 @@ use App\Http\Requests\Comment\CommentReplyRequest;
 use App\Http\Resources\Comment\CommentReplyResource;
 use App\Models\Comment\Comment;
 use App\Models\Comment\CommentReply;
-use App\Repositories\CommentReplyRepository;
+use App\Repositories\comment\CommentReplyRepository;
 use App\Services\Comment\CommentReplyService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;

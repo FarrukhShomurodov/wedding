@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PlanRepository;
 use App\Http\Resources\PlansResource;
+use App\Repositories\PlanRepository;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class PlansController extends Controller

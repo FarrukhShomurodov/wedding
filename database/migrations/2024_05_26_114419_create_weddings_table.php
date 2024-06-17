@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->timestamp('date_time');
             $table->string('location');
             $table->text('information_later');
+            $table->string('bank_card_number');
             $table->timestamps();
         });
     }

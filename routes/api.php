@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\Dashboard\Comment\CommentController;
 use App\Http\Controllers\Api\Dashboard\Comment\CommentReplyController;
 use App\Http\Controllers\Api\Dashboard\DashboardController;
 use App\Http\Controllers\Api\Dashboard\EventController;
+use App\Http\Controllers\Api\Dashboard\Faq\FaqCategoryController;
+use App\Http\Controllers\Api\Dashboard\Faq\FaqController;
 use App\Http\Controllers\Api\Dashboard\GalleryController;
 use App\Http\Controllers\Api\Dashboard\GuestsController;
 use App\Http\Controllers\Api\Dashboard\HistoryController;
@@ -88,4 +90,23 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/comment-count/{weddingId}', [CommentController::class, 'countByWedding']);
         Route::get('/remains-wedding-date/{wedding}', [WeddingController::class, 'remainsWeddingDate']);
     });
+});
+
+// FAQ
+Route::prefix('faq')->group(function () {
+    Route::get('/', [FaqController::class, 'index']);
+    Route::get('/show/{faq}', [FaqController::class, 'show']);
+    Route::get('/by-category/{faqCategory}', [FaqController::class, 'byCategory']);
+    Route::post('/', [FaqController::class, 'store']);
+    Route::put('/{faq}', [FaqController::class, 'update']);
+    Route::delete('/{faq}', [FaqController::class, 'destroy']);
+});
+
+// FAQ Category
+Route::prefix('faq-category')->group(function () {
+    Route::get('/', [FaqCategoryController::class, 'index']);
+    Route::get('/show/{faqCategory}', [FaqCategoryController::class, 'show']);
+    Route::post('/', [FaqCategoryController::class, 'store']);
+    Route::put('/{faqCategory}', [FaqCategoryController::class, 'update']);
+    Route::delete('/{faqCategory}', [FaqCategoryController::class, 'destroy']);
 });

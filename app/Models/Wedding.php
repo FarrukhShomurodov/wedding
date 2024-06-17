@@ -23,6 +23,7 @@ class Wedding extends Model
             'date_time',
             'location',
             'information_later',
+            'bank_card_number'
         ];
 
     public function user(): BelongsTo

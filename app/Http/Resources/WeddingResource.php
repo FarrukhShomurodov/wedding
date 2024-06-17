@@ -23,7 +23,8 @@ class WeddingResource extends JsonResource
             'bridge_information' => $this->bridge_information,
             'date_time' => $this->date,
             'location' => $this->location,
-            'information_later'=> $this->information_later
+            'information_later'=> $this->information_later,
+            'bank_card_number'=> $this->bank_card_number
         ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Repositories;
 
 use App\Models\Plan;
 use Illuminate\Database\Eloquent\Collection;

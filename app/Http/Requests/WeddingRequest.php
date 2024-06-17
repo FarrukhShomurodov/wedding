@@ -37,7 +37,8 @@ class WeddingRequest extends FormRequest
             'bridge_information' => 'required|string',
             'date_time' => 'required|date',
             'location' => 'required|string',
-            'information_later' => 'required|string'
+            'information_later' => 'required|string',
+            'bank_card_number' => 'string'
         ];
     }
 }
