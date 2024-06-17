@@ -32,7 +32,9 @@ class WeddingRequest extends FormRequest
         return [
             'user_id' => 'required|exists:users,id',
             'groom_name' => 'required|string|max:200',
+            'groom_information' => 'required|string',
             'bridge_name' => 'required|string|max:200',
+            'bridge_information' => 'required|string',
             'date_time' => 'required|date',
             'location' => 'required|string',
             'information_later' => 'required|string'

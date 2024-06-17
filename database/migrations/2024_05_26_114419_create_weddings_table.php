@@ -14,7 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id');
             $table->string('groom_name');
+            $table->string('groom_information');
             $table->string('bridge_name');
+            $table->string('bridge_information');
             $table->timestamp('date_time');
             $table->string('location');
             $table->text('information_later');

@@ -17,7 +17,9 @@ class Wedding extends Model
         [
             'user_id',
             'groom_name',
+            'groom_information',
             'bridge_name',
+            'bridge_information',
             'date_time',
             'location',
             'information_later',
