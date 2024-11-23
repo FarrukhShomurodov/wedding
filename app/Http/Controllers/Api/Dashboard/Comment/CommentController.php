@@ -8,7 +8,7 @@ use App\Http\Requests\Comment\UpdateRequest;
 use App\Http\Resources\Comment\CommentResource;
 use App\Models\Comment\Comment;
 use App\Models\Wedding;
-use App\Repositories\comment\CommentRepository;
+use App\Repositories\Comment\CommentRepository;
 use App\Services\Comment\CommentService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -37,9 +37,9 @@ class CommentController extends Controller
 
     public function store(StoreRequest $request): CommentResource
     {
-        $history = $this->commentService->store($request->validated());
+        $comment = $this->commentService->store($request->validated());
 
-        return CommentResource::make($history);
+        return CommentResource::make($comment);
     }
 
 

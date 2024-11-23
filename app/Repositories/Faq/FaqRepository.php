@@ -19,6 +19,6 @@ class FaqRepository
 
     public function byCategory(FaqCategory $faqCategory)
     {
-        return $faqCategory->faq();
+        return $faqCategory->faq()->get();
     }
 }

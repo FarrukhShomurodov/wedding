@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\comment;
+namespace App\Repositories\Comment;
 
 use App\Models\Comment\Comment;
 use App\Models\Wedding;

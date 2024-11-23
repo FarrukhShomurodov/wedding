@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Api\Dashboard\Comment;
+namespace App\Http\Controllers\Api\Dashboard\Post\Comment;
 
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Comment\CommentReplyRequest;
+use App\Http\Requests\Post\PostCommentReplyRequest;
 use App\Http\Resources\Comment\CommentReplyResource;
-use App\Models\Comment\Comment;
-use App\Models\Comment\CommentReply;
-use App\Repositories\Comment\CommentReplyRepository;
-use App\Services\Comment\CommentReplyService;
+use App\Models\PostComment;
+use App\Models\PostCommentReply;
+use App\Repositories\Post\Comment\CommentReplyRepository;
+use App\Services\Post\Comment\CommentReplyService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
@@ -24,13 +24,13 @@ class CommentReplyController extends Controller
         $this->commentReplyService = $commentReplyService;
     }
 
-    public function fetchByComment(Comment $comment): AnonymousResourceCollection
+    public function fetchByComment(PostComment $postComment): AnonymousResourceCollection
     {
-        $commentReplay = $this->commentReplyRepository->commentReplay($comment);
+        $commentReplay = $this->commentReplyRepository->commentReplay($postComment);
         return CommentReplyResource::collection($commentReplay);
     }
 
-    public function store(CommentReplyRequest $request): CommentReplyResource
+    public function store(PostCommentReplyRequest $request): CommentReplyResource
     {
         $history = $this->commentReplyService->store($request->validated());
 
@@ -38,16 +38,16 @@ class CommentReplyController extends Controller
     }
 
 
-    public function update(CommentReply $commentReply, CommentReplyRequest $request): CommentReplyResource
+    public function update(PostCommentReply $postCommentReply, PostCommentReplyRequest $request): CommentReplyResource
     {
-        $comment = $this->commentReplyService->update($commentReply, $request->validated());
+        $comment = $this->commentReplyService->update($postCommentReply, $request->validated());
 
         return CommentReplyResource::make($comment);
     }
 
-    public function destroy(CommentReply $commentReply): JsonResponse
+    public function destroy(PostCommentReply $postCommentReply): JsonResponse
     {
-        $this->commentReplyService->destroy($commentReply);
+        $this->commentReplyService->destroy($postCommentReply);
 
         return response()->json([], 204);
     }

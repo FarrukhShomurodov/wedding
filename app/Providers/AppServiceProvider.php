@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Repositories\comment\CommentRepository;
+use App\Repositories\Post\Comment\CommentRepository;
 use App\Repositories\HistoryRepository;
 use Illuminate\Support\ServiceProvider;
 

@@ -24,24 +24,24 @@ class OTPController extends Controller
         $validated = $request->validated();
 
         // Todo delete it
-        $verifyCode = VerifyCode::query()->create([
-            'phone_number' => $validated['phone_number'],
-            'code' => 111111
-        ]);
+//        $verifyCode = VerifyCode::query()->create([
+//            'phone_number' => $validated['phone_number'],
+//            'code' => 111111
+//        ]);
 
         //return response
         return new JsonResponse(200);
 
         //random code
         $code = rand(100000, 999999);
-        if ($validated['phone_number'] == '998901234567') {
+        if ($validated['phone_number'] == '998912345678') {
             $code = 111111;
         }
 
         $proUser = User::query()->where('phone_number', $validated['phone_number'])->first();
 
         //text for sent user phone number
-        $sentText = "PRO:" . $code . "– Ваш одноразовый код в Wedding.";
+        $sentText = "ST40:" . $code . "– Ваш одноразовый код в Wedding.";
 
         //sending text
         $sent = OperSmsService::send($validated['phone_number'], $sentText);
