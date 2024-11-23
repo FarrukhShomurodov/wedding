@@ -38,10 +38,8 @@ class OTPController extends Controller
             $code = 111111;
         }
 
-        $proUser = User::query()->where('phone_number', $validated['phone_number'])->first();
-
         //text for sent user phone number
-        $sentText = "ST40:" . $code . "– Ваш одноразовый код в Wedding.";
+        $sentText = $code . " – это ваш одноразовый код для доступа в Wedding.";
 
         //sending text
         $sent = OperSmsService::send($validated['phone_number'], $sentText);
