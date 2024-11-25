@@ -19,18 +19,22 @@ class AuthController extends Controller
     {
         $validated = $request->validated();
 
-        $phoneVerified = VerifyCode::query()->where('phone_number', $validated['phone_number'])->latest()->where('status', true)->first();
+        $phoneVerified = VerifyCode::query()->where('phone_number', $validated['phone_number'])->latest()->where(
+            'status',
+            true
+        )->first();
 
         if ($phoneVerified) {
             $phoneVerified->delete();
             $user = User::query()->where('phone_number', $validated['phone_number'])->first();
 
-            if ($user)
+            if ($user) {
                 $token = $user->createToken("access_token")->plainTextToken;
-            else
+            } else {
                 return new JsonResponse([
                     'message' => 'Пользователь не найден',
                 ], 401);
+            }
 
             return new JsonResponse([
                 'data' => [
@@ -41,7 +45,6 @@ class AuthController extends Controller
         } else {
             return new JsonResponse(['phone not verified'], 500);
         }
-
     }
 
 
@@ -49,18 +52,23 @@ class AuthController extends Controller
     {
         $validated = $request->validated();
 
-        $phoneVerified = VerifyCode::query()->where('phone_number', $validated['phone_number'])->latest()->where('status', true)->first();
+        $phoneVerified = VerifyCode::query()
+            ->where('phone_number', $validated['phone_number'])
+            ->where('status', 1)
+            ->latest()
+            ->first();
 
         if ($phoneVerified) {
             $user = User::query()->create($validated);
             $user->assignRole('user');
 
-            if ($user)
+            if ($user) {
                 $token = $user->createToken("access_token")->plainTextToken;
-            else
+            } else {
                 return new JsonResponse([
                     'message' => 'Пользователь не найден',
                 ], 401);
+            }
 
             return new JsonResponse([
                 'data' => [
